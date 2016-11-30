@@ -1,6 +1,6 @@
 <div class="container">
   <h1>Facturación</h1>
-  <form (ngSubmit)="onSubmit();heroForm.reset()" #heroForm="ngForm">
+  <form (ngSubmit)="onSubmit();compraForm.reset()" #compraForm="ngForm">
     <div class="form-group">
       <label for="producto">Producto</label>
       <select item-width="250px" class="form-control" id="producto" name="producto" required [(ngModel)]="prod" (ngSelect)="onProductoSelect()">
@@ -12,13 +12,14 @@
     </div>
     <div class="form-group">
       <label for="cantidad">Cantidad</label>
-      <input type="number" class="form-control" id="cantidad" [(ngModel)]="cant" required name="cantidad" #cantidad="ngModel">
+      <input type="number" min="1"  (ngModelChange)="validate($event)" class="form-control" id="cantidad" [(ngModel)]="cant"
+          required name="cantidad" #cantidad="ngModel">
       <div [hidden]="cantidad.valid || cantidad.pristine" class="alert alert-danger">
         Se requiere cantidad
       </div>
     </div>
-    <button type="submit" class="btn btn-default" [disabled]="!heroForm.form.valid">Agregar</button>
-    <button type="button" class="btn btn-default" (click)="heroForm.reset()">Resetear</button>
+    <button type="submit" class="btn btn-default" [disabled]="!compraForm.form.valid">Agregar</button>
+    <button type="button" class="btn btn-default" (click)="compraForm.reset()">Resetear</button>
   </form>
   <hr/>
   <table width="100%" border="1" style="margin-bottom: 10px">

@@ -36,6 +36,9 @@ export class FacturacionComponent implements OnInit {
     this.length = this.productos.length;
   }
 
+  validate(value) {
+    value <= 0 ? this.cant = 1 : this.cant = value;
+  }
   onSubmit() {
     this.productos.push({
       nombre: this.stock[this.prod], cant: this.cant, id: this.prod,
